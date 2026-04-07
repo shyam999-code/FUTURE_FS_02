@@ -25,15 +25,17 @@ app.use(cors({
 app.use(express.json());
 
 // ── Supabase ───────────────────────────────────────────────────────
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_API_KEY;
+const supabaseUrl = process.env.SUPABASE_URL || '';
+const supabaseKey = process.env.SUPABASE_API_KEY || '';
 
 if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ Missing SUPABASE_URL or SUPABASE_API_KEY in environment variables.');
-  process.exit(1);
+  console.warn('⚠️  WARNING: SUPABASE_URL or SUPABASE_API_KEY not set. DB routes will fail.');
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseKey || 'placeholder'
+);
 
 // ── JWT ────────────────────────────────────────────────────────────
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret_crm_key_123';
