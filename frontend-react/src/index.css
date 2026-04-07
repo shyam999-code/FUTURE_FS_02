@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nexus CRM - Global Styles */
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Animations ─────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar           { width: 5px; height: 5px; }
+::-webkit-scrollbar-track     { background: transparent; }
+::-webkit-scrollbar-thumb     { background-color: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover{ background-color: #94a3b8; }
+
+.dark ::-webkit-scrollbar-thumb      { background-color: #475569; }
+.dark ::-webkit-scrollbar-thumb:hover{ background-color: #64748b; }
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── FAB ────────────────────────────────────── */
+.fab-btn {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+.fab-btn:hover  { transform: scale(1.05) translateY(-2px); }
+.fab-btn:active { transform: scale(0.95); }
+
+/* ── Theme transition ────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+/* But NOT for transforms, opacity, etc (would break animations) */
+*[class*="animate-"] {
+  transition-property: none;
+}
